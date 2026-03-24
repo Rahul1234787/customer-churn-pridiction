@@ -3,7 +3,11 @@ import pickle
 import numpy as np
 
 # Load trained model
-model = pickle.load(open("model.pkl", "rb"))
+import os
+
+BASE_DIR = os.path.dirname(__file__)
+model_path = os.path.join(BASE_DIR, "model.pkl")
+model = pickle.load(open(model_path, "rb"))
 
 st.title("Customer Churn Prediction")
 
@@ -28,3 +32,4 @@ import streamlit as st
 
 st.title("Customer Churn Prediction")
 st.write("App is running successfully 🎉")
+
