@@ -1,16 +1,14 @@
 import streamlit as st
 import pickle
 import numpy as np
-
-# Load trained model
 import os
 
+# Load trained model
 BASE_DIR = os.path.dirname(__file__)
 model_path = os.path.join(BASE_DIR, "model.pkl")
 model = pickle.load(open(model_path, "rb"))
 
 st.title("Customer Churn Prediction")
-
 st.write("Enter customer details:")
 
 # Inputs
@@ -20,16 +18,9 @@ monthly_charges = st.number_input("Monthly Charges")
 # Predict
 if st.button("Predict"):
     input_data = np.array([[tenure, monthly_charges]])
-
     result = model.predict(input_data)
 
     if result[0] == 1:
         st.error("Customer will churn ❌")
     else:
         st.success("Customer will not churn ✅")
-
-import streamlit as st
-
-st.title("Customer Churn Prediction")
-st.write("App is running successfully 🎉")
-
